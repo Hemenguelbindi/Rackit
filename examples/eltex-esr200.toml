@@ -1,0 +1,53 @@
+# Пример конфигурации для Eltex ESR-200
+# Этот файл демонстрирует базовую работу с роутером Eltex через Serial порт
+
+[global_settings]
+max_retries = 3
+command_delay_ms = 200
+default_timeout_seconds = 30
+
+[devices.eltex_esr200]
+[devices.eltex_esr200.device_info]
+name = "Eltex ESR-200 Router"
+device_type = "router"
+model = "ESR-200"
+vendor = "Eltex"
+
+[devices.eltex_esr200.connection]
+transport = "serial"
+host = "/dev/ttyS0"           # Замените на ваш Serial порт
+baud_rate = 115200
+timeout_seconds = 10
+
+[devices.eltex_esr200.credentials]
+username = "admin"
+password = "your_password"    # Замените на ваш пароль
+
+# Последовательность команд для выполнения
+[[devices.eltex_esr200.command_sequence]]
+name = "login"
+step_type = { type = "login" }
+on_error = "stop"
+
+[[devices.eltex_esr200.command_sequence]]
+name = "show_system"
+step_type = { type = "command", data = { command = "show system", expected_prompt = "esr-200#" } }
+on_error = "continue"
+timeout_seconds = 5
+
+[[devices.eltex_esr200.command_sequence]]
+name = "show_version"
+step_type = { type = "command", data = { command = "show version", expected_prompt = "esr-200#" } }
+on_error = "continue"
+timeout_seconds = 5
+
+[[devices.eltex_esr200.command_sequence]]
+name = "show_interfaces"
+step_type = { type = "command", data = { command = "show interfaces", expected_prompt = "esr-200#" } }
+on_error = "continue"
+timeout_seconds = 10
+
+[[devices.eltex_esr200.command_sequence]]
+name = "logout"
+step_type = { type = "logout" }
+on_error = "continue" 

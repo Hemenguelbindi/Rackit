@@ -1,0 +1,43 @@
+# Пример конфигурации для Eltex устройств
+
+[global_settings]
+max_retries = 3
+command_delay_ms = 200
+default_timeout_seconds = 30
+
+[devices.eltex_router]
+[devices.eltex_router.device_info]
+name = "Eltex ESR-200"
+device_type = "router"
+model = "ESR-200"
+vendor = "Eltex"
+
+[devices.eltex_router.connection]
+transport = "serial"
+host = "/dev/ttyS0"
+baud_rate = 115200
+timeout_seconds = 10
+
+[devices.eltex_router.credentials]
+username = "admin"
+password = "UII16"
+
+[[devices.eltex_router.command_sequence]]
+name = "login"
+step_type = { type = "login" }
+on_error = "stop"
+
+[[devices.eltex_router.command_sequence]]
+name = "show_system"
+step_type = { type = "command", data = { command = "show system", expected_prompt = "esr-200#" } }
+on_error = "continue"
+
+[[devices.eltex_router.command_sequence]]
+name = "show_version"
+step_type = { type = "command", data = { command = "show version", expected_prompt = "esr-200#" } }
+on_error = "continue"
+
+[[devices.eltex_router.command_sequence]]
+name = "logout"
+step_type = { type = "logout" }
+on_error = "continue"
