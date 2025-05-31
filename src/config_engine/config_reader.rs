@@ -3,16 +3,22 @@ use crate::error::Result;
 use crate::config_engine::types::ConfigFile;
 
 pub trait ConfigReader {
+
+
     /// Читает конфигурацию из файла
+    /// Read configuration in file
     fn read_from_file<P: AsRef<Path>>(path: P) -> Result<ConfigFile>;
     
     /// Читает конфигурацию из строки
+    /// Read configuration in string
     fn read_from_str(content: &str) -> Result<ConfigFile>;
     
     /// Возвращает поддерживаемые расширения файлов
+    /// Return supported file permissions
     fn supported_extensions() -> &'static [&'static str];
     
     /// Валидация конфигурации
+    /// Vakudate configuratruin
     fn validate(config: &ConfigFile) -> Result<()> {
         // Базовая валидация
         if config.devices.is_empty() {
