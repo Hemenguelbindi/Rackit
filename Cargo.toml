@@ -1,12 +1,12 @@
 [package]
 name = "rackit"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Hemenguel Bindi <nilafe4@gmail.com>"]
 description = "Universal network device configuration engine for Rust"
 documentation = "https://docs.rs/rackit"
-homepage = "https://github.com/yourusername/rackit"
-repository = "https://github.com/yourusername/rackit"
+homepage = "https://github.com/hemenguelbindi/rackit"
+repository = "https://github.com/hemenguelbindi/rackit"
 license = "MIT"
 keywords = ["network", "automation", "configuration", "serial", "eltex"]
 categories = ["network-programming", "command-line-utilities", "hardware-support"]
