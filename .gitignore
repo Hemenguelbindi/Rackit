@@ -33,3 +33,5 @@ Thumbs.db
 
 # Test outputs
 test-output/
+eltex-test.toml
+test-initial-settings.toml

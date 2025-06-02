@@ -256,6 +256,7 @@ fn cmd_plan(
                     StepType::Delay { milliseconds } => format!("⏱️ Пауза: {} мс", milliseconds),
                     StepType::WaitPrompt { prompt } => format!("⏳ Ожидание: '{}'", prompt),
                     StepType::CheckResponse { contains, .. } => format!("✅ Проверка: '{}'", contains),
+                    StepType::DeviceOperation { operation, .. } => format!("🔧 Операция: '{}'", operation),
                 };
                 println!("      {}. {} - {}", i + 1, step.name, step_desc);
             }

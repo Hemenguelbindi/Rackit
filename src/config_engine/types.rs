@@ -101,7 +101,7 @@ pub struct ConnectionConfig {
 #[serde(rename_all = "lowercase")]
 pub enum TransportType {
     Serial,
-    Telnet, 
+    Telnet,
     Ssh,
     Http,
     Https,
@@ -162,6 +162,13 @@ pub enum StepType {
     /// Выйти из системы
     #[serde(rename = "logout")]
     Logout,
+    
+    /// Высокоуровневая операция устройства
+    #[serde(rename = "device_operation")]
+    DeviceOperation {
+        operation: String,
+        parameters: HashMap<String, String>,
+    },
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

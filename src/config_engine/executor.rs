@@ -97,6 +97,10 @@ impl ConfigExecutor {
                 // Выполняем команду
                 device.execute_command(command)
             }
+            StepType::DeviceOperation { operation, parameters } => {
+                // Выполняем высокоуровневую операцию устройства
+                device.execute_device_operation(operation, parameters)
+            }
             StepType::Delay { milliseconds } => {
                 // Пауза
                 println!("    ⏱️ Пауза {} мс", milliseconds);
